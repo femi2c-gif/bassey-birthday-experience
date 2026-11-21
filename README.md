@@ -1,4 +1,4 @@
-# Bassey Birthday Experience
+# Mr Bassey Birthday Experience
 
 A cinematic, interactive birthday tribute website created in celebration of **Bassey Uduak**, Managing Director of Plural Media & Technologies Limited.
 
