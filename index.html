@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07152F">
+
+  <title>Happy Birthday, Bassey Uduak | Plural Media</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main id="opening-screen">
+
+    <!-- Background particles -->
+    <canvas id="particles"></canvas>
+
+    <!-- Ambient lighting -->
+    <div class="ambient-glow glow-one"></div>
+    <div class="ambient-glow glow-two"></div>
+
+    <!-- Company header -->
+    <header class="top-header">
+
+      <a href="#" class="brand-logo">
+        <img
+          src="assets/plural-logo.png"
+          alt="Plural Media - Delivering Visible Happiness"
+        >
+      </a>
+
+      <div class="header-label">
+        A SPECIAL TRIBUTE · 2026
+      </div>
+
+    </header>
+
+
+    <!-- Opening screen -->
+    <section class="hero-content">
+
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        SOMETHING SPECIAL IS WAITING
+        <span class="eyebrow-line"></span>
+      </div>
+
+      <h1 class="hero-title">
+        Some people<br>
+        deserve more than<br>
+        <span>just a celebration.</span>
+      </h1>
+
+      <p class="hero-description">
+        A remarkable occasion calls for a remarkable experience.
+        We've prepared something special for someone extraordinary.
+      </p>
+
+      <button
+        id="reveal-button"
+        class="reveal-button"
+        type="button"
+      >
+        <span>Discover the surprise</span>
+        <span class="button-arrow">↗</span>
+      </button>
+
+      <div class="bottom-note">
+        MADE WITH APPRECIATION
+        <span>•</span>
+        FROM THE PLURAL MEDIA FAMILY
+      </div>
+
+    </section>
+
+
+    <!-- Decorative corners -->
+    <div class="screen-corner corner-top"></div>
+    <div class="screen-corner corner-bottom"></div>
+
+  </main>
+
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.14.2/ScrollTrigger.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
