@@ -108,7 +108,7 @@ button {
 
 
 /* =========================================
-   5. HEADER AND COMPANY LOGO
+   5. HEADER AND COMPANY LOGOS
 ========================================= */
 
 .top-header {
@@ -122,22 +122,51 @@ button {
   padding: 25px 7%;
 }
 
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
 .brand-logo {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  width: 210px;
+  height: 82px;
+  flex: 0 0 auto;
 
   position: relative;
   z-index: 10;
+
+  cursor: pointer;
+
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: translateY(-3px);
 }
 
 .brand-logo img {
   display: block;
+
   width: 100%;
-  height: auto;
+  height: 100%;
+
   object-fit: contain;
+}
+
+.brand-logo-plural {
+  width: 170px;
+}
+
+.brand-logo-fortera {
+  width: 82px;
+}
+
+.brand-logo-nexcel {
+  width: 150px;
 }
 
 .header-label {
@@ -337,13 +366,14 @@ button {
 
   z-index: 5;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
 
-  padding: 35px 7% 50px;
+  padding: 35px 7% 70px;
 
   overflow-y: auto;
+
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
 
   background:
     radial-gradient(
@@ -365,7 +395,8 @@ button {
 
   gap: 65px;
 
-  margin: auto;
+  margin: 0 auto 120px;
+  min-height: calc(100vh - 200px);
 }
 
 
@@ -554,8 +585,24 @@ button {
     padding: 20px;
   }
 
+  .brand-logos {
+    gap: 12px;
+  }
+
   .brand-logo {
-    width: 145px;
+    height: 55px;
+  }
+
+  .brand-logo-plural {
+    width: 105px;
+  }
+
+  .brand-logo-fortera {
+    width: 48px;
+  }
+
+  .brand-logo-nexcel {
+    width: 90px;
   }
 
   .header-label {
@@ -610,6 +657,8 @@ button {
   .reveal-layout {
     grid-template-columns: 1fr;
     gap: 40px;
+    min-height: auto;
+    margin-bottom: 90px;
   }
 
   .reveal-copy {
@@ -634,17 +683,92 @@ button {
     max-width: 330px;
   }
 
+  .tribute-section {
+    padding: 55px 0 70px;
+  }
+
+  .tribute-gallery {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    gap: 25px;
+  }
+
+  .gallery-card img {
+    height: 420px;
+  }
+
+  .tribute-quote {
+    margin-top: 65px;
+    padding: 35px 15px;
+  }
+
+  .final-tribute {
+    min-height: 550px;
+    padding: 70px 20px;
+  }
+
+  .final-signature {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .cinematic-ending {
+    min-height: 90vh;
+    padding: 85px 25px;
+  }
+
+  .ending-eyebrow {
+    font-size: 8px;
+    letter-spacing: 2.5px;
+  }
+
+  .ending-intro {
+    font-size: 9px;
+    letter-spacing: 3px;
+  }
+
+  .ending-message {
+    font-size: 13px;
+    line-height: 1.9;
+  }
+
+  .ending-signature {
+    margin-top: 48px;
+    letter-spacing: 2px;
+  }
+
+  .ending-signature strong {
+    font-size: 9px;
+    line-height: 1.8;
+  }
+
 }
 
 
-/* =========================================
-   16. SMALL MOBILE SCREENS
-========================================= */
+ /* =========================================
+    16. SMALL MOBILE SCREENS
+ ========================================= */
 
 @media (max-width: 380px) {
 
+  .brand-logos {
+    gap: 8px;
+  }
+
   .brand-logo {
-    width: 115px;
+    height: 45px;
+  }
+
+  .brand-logo-plural {
+    width: 85px;
+  }
+
+  .brand-logo-fortera {
+    width: 40px;
+  }
+
+  .brand-logo-nexcel {
+    width: 75px;
   }
 
   .header-label {
@@ -661,8 +785,9 @@ button {
 
 }
 
+
 /* =========================================
-   FINAL FIX: DISCOVER BUTTON VISIBILITY
+   17. DISCOVER BUTTON VISIBILITY
 ========================================= */
 
 .hero-content .reveal-button {
@@ -714,27 +839,19 @@ button {
   font-size: 20px;
 }
 
-/* Keep button visible on mobile */
 @media (max-width: 750px) {
+
   .hero-content .reveal-button {
     display: inline-flex !important;
     margin-top: 30px;
   }
+
 }
+
 
 /* =========================================
-   CHAPTER TWO: THE MAN BEHIND THE VISION
+   18. CHAPTER TWO: THE MAN BEHIND THE VISION
 ========================================= */
-
-.birthday-reveal {
-  display: block;
-  padding: 35px 7% 70px;
-}
-
-.reveal-layout {
-  margin: 0 auto 120px;
-  min-height: calc(100vh - 200px);
-}
 
 .tribute-section {
   position: relative;
@@ -797,6 +914,8 @@ button {
   background: rgba(255,255,255,0.035);
 
   transition: all 0.4s ease;
+
+  will-change: transform, opacity;
 }
 
 .gallery-card:hover {
@@ -870,7 +989,7 @@ button {
 
 
 /* =========================================
-   CHAPTER THREE: FINAL TRIBUTE
+   19. CHAPTER THREE: FINAL TRIBUTE
 ========================================= */
 
 .final-tribute {
@@ -937,7 +1056,7 @@ button {
 
 
 /* =========================================
-   IMAGE LIGHTBOX
+   20. IMAGE LIGHTBOX
 ========================================= */
 
 .image-lightbox {
@@ -997,50 +1116,8 @@ button {
 
 
 /* =========================================
-   RESPONSIVE GALLERY
+   21. SMALLER GALLERY SCREENS
 ========================================= */
-
-@media (max-width: 750px) {
-
-  .birthday-reveal {
-    padding: 35px 20px 50px;
-  }
-
-  .reveal-layout {
-    min-height: auto;
-    margin-bottom: 90px;
-  }
-
-  .tribute-section {
-    padding: 55px 0 70px;
-  }
-
-  .tribute-gallery {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    gap: 25px;
-  }
-
-  .gallery-card img {
-    height: 420px;
-  }
-
-  .tribute-quote {
-    margin-top: 65px;
-    padding: 35px 15px;
-  }
-
-  .final-tribute {
-    min-height: 550px;
-    padding: 70px 20px;
-  }
-
-  .final-signature {
-    font-size: 8px;
-    letter-spacing: 2px;
-  }
-
-}
 
 @media (max-width: 400px) {
 
@@ -1054,36 +1131,32 @@ button {
   }
 
 }
-/* Smooth scrolling */
+
+
+/* =========================================
+   22. SMOOTH SCROLLING AND ACCESSIBILITY
+========================================= */
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Respect reduced-motion preferences */
-
 @media (prefers-reduced-motion: reduce) {
+
   html {
     scroll-behavior: auto;
   }
+
+  .birthday-reveal {
+    scroll-behavior: auto;
+  }
+
 }
+
 
 /* =========================================
-   SCROLL EXPERIENCE ENHANCEMENTS
+   23. MOBILE SCROLL ENHANCEMENTS
 ========================================= */
-
-.birthday-reveal {
-  scroll-behavior: smooth;
-  overscroll-behavior-y: contain;
-}
-
-/* Keep gallery images visually polished */
-
-.gallery-card {
-  will-change: transform, opacity;
-}
-
-/* Improve scrolling on mobile */
 
 @media (max-width: 750px) {
 
@@ -1093,18 +1166,9 @@ html {
 
 }
 
-/* Respect reduced-motion preferences */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .birthday-reveal {
-    scroll-behavior: auto;
-  }
-
-}
 
 /* =========================================
-   CINEMATIC BIRTHDAY FINALE
+   24. CINEMATIC BIRTHDAY FINALE
 ========================================= */
 
 .cinematic-ending {
@@ -1274,14 +1338,20 @@ html {
   from {
     background-position: 0 0, 35px 45px;
   }
+
   to {
     background-position: 0 -170px, 35px -125px;
   }
 }
 
 @keyframes endingGlowPulse {
-  from { opacity: 0.35; }
-  to { opacity: 0.8; }
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 0.8;
+  }
 }
 
 @keyframes endingStarPulse {
@@ -1289,13 +1359,20 @@ html {
     opacity: 0.55;
     transform: scale(1);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.2);
   }
 }
 
+
+/* =========================================
+   25. CINEMATIC FINALE MOBILE
+========================================= */
+
 @media (max-width: 600px) {
+
   .cinematic-ending {
     min-height: 90vh;
     padding: 85px 25px;
@@ -1325,18 +1402,22 @@ html {
     font-size: 9px;
     line-height: 1.8;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .cinematic-ending::before,
   .ending-particles,
   .ending-star {
     animation: none;
   }
+
 }
 
+
 /* =========================================
-   FLOATING BACKGROUND MUSIC CONTROL
+   26. FLOATING BACKGROUND MUSIC CONTROL
 ========================================= */
 
 .music-control {
@@ -1399,10 +1480,12 @@ html {
 }
 
 @media (max-width: 600px) {
+
   .music-control {
     right: 16px;
     bottom: 18px;
     padding: 12px 16px;
     font-size: 10px;
   }
+
 }

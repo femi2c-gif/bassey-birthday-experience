@@ -1,3 +1,4 @@
+
 /* =========================================
    1. INTRODUCTION ANIMATIONS
 ========================================= */
@@ -154,7 +155,91 @@ if (canvas && ctx) {
 
 
 /* =========================================
-   3. BIRTHDAY REVEAL INTERACTION
+   3. RETURN TO OPENING SCREEN
+========================================= */
+
+function returnToOpeningScreen() {
+  const openingScreen = document.getElementById("opening-screen");
+  const hero = document.querySelector(".hero-content");
+  const reveal = document.querySelector(".birthday-reveal");
+  const revealButton = document.getElementById("reveal-button");
+
+  if (!openingScreen || !hero) return;
+
+  // Stop and remove background music
+  const music = document.getElementById("birthday-music");
+
+  if (music) {
+    music.pause();
+    music.currentTime = 0;
+  }
+
+  // Close any open image lightbox
+  document.body.style.overflow = "";
+
+  // Remove scroll animations before removing the reveal
+  if (window.ScrollTrigger) {
+    ScrollTrigger.getAll().forEach(trigger => {
+      trigger.kill();
+    });
+  }
+
+  // Remove birthday experience
+  if (reveal) {
+    reveal.remove();
+  }
+
+  // Remove any remaining confetti
+  document.querySelectorAll(".reveal-confetti").forEach(piece => {
+    piece.remove();
+  });
+
+  // Restore opening screen
+  hero.style.display = "";
+  hero.style.opacity = "";
+  hero.style.transform = "";
+
+  // Allow the reveal button to work again
+  if (revealButton) {
+    revealButton.disabled = false;
+  }
+
+  // Return to the top
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  // Re-run the opening animation
+  if (window.gsap) {
+    gsap.fromTo(
+      ".hero-content",
+      {
+        opacity: 0,
+        y: 25
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out"
+      }
+    );
+  }
+}
+
+
+// Make all three company logos return to the opening screen
+document.querySelectorAll("[data-home-logo]").forEach(logo => {
+  logo.addEventListener("click", event => {
+    event.preventDefault();
+    returnToOpeningScreen();
+  });
+});
+
+
+/* =========================================
+   4. BIRTHDAY REVEAL INTERACTION
 ========================================= */
 
 const revealButton = document.getElementById("reveal-button");
@@ -458,30 +543,7 @@ if (revealButton) {
 
     // HIDE OPENING SCREEN CONTENT
 
-    if (window.gsap) {
-
-      gsap.to(hero, {
-        opacity: 0,
-        scale: 0.96,
-        duration: 0.6,
-        ease: "power2.inOut",
-
-        onComplete: () => {
-
-          hero.style.display = "none";
-
-          openingScreen.appendChild(reveal);
-
-          animateBirthdayReveal();
-          setupGalleryLightbox();
-          setupBackgroundMusic(reveal);
-          initScrollAnimations(reveal);
-
-        }
-
-      });
-
-    } else {
+    const showBirthdayExperience = () => {
 
       hero.style.display = "none";
 
@@ -492,6 +554,25 @@ if (revealButton) {
       setupBackgroundMusic(reveal);
       initScrollAnimations(reveal);
 
+    };
+
+
+    if (window.gsap) {
+
+      gsap.to(hero, {
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.6,
+        ease: "power2.inOut",
+
+        onComplete: showBirthdayExperience
+
+      });
+
+    } else {
+
+      showBirthdayExperience();
+
     }
 
   });
@@ -500,7 +581,7 @@ if (revealButton) {
 
 
 /* =========================================
-   4. ANIMATE BIRTHDAY REVEAL
+   5. ANIMATE BIRTHDAY REVEAL
 ========================================= */
 
 function animateBirthdayReveal() {
@@ -566,7 +647,7 @@ function animateBirthdayReveal() {
 
 
 /* =========================================
-   5. BIRTHDAY CONFETTI
+   6. BIRTHDAY CONFETTI
 ========================================= */
 
 function createBirthdayConfetti() {
@@ -613,7 +694,7 @@ function createBirthdayConfetti() {
 
 
 /* =========================================
-   6. INTERACTIVE PHOTO GALLERY
+   7. INTERACTIVE PHOTO GALLERY
 ========================================= */
 
 function setupGalleryLightbox() {
@@ -634,86 +715,6 @@ function setupGalleryLightbox() {
     return;
   }
 
-/* =========================================
-   BACKGROUND BIRTHDAY MUSIC PLAYER
-========================================= */
-
-function setupBackgroundMusic(reveal) {
-
-  const music = document.createElement("audio");
-
-  music.id = "birthday-music";
-  music.src = "assets/birthday-instrumental.mp3";
-  music.loop = true;
-  music.preload = "auto";
-  music.volume = 0.35;
-
-  const musicButton = document.createElement("button");
-
-  musicButton.className = "music-control";
-  musicButton.type = "button";
-  musicButton.innerHTML = `
-    <span class="music-icon">♫</span>
-    <span class="music-label">Play Music</span>
-  `;
-
-  musicButton.setAttribute("aria-label", "Play background music");
-
-  reveal.appendChild(music);
-  reveal.appendChild(musicButton);
-
-  musicButton.addEventListener("click", async () => {
-
-    const icon = musicButton.querySelector(".music-icon");
-    const label = musicButton.querySelector(".music-label");
-
-    if (music.paused) {
-
-      try {
-
-        await music.play();
-
-        musicButton.classList.add("playing");
-        icon.textContent = "Ⅱ";
-        label.textContent = "Pause Music";
-
-        musicButton.setAttribute(
-          "aria-label",
-          "Pause background music"
-        );
-
-      } catch (error) {
-
-        console.error("Unable to play birthday music:", error);
-
-        label.textContent = "Try Again";
-
-      }
-
-    } else {
-
-      music.pause();
-
-      musicButton.classList.remove("playing");
-      icon.textContent = "♫";
-      label.textContent = "Play Music";
-
-      musicButton.setAttribute(
-        "aria-label",
-        "Play background music"
-      );
-
-    }
-
-  });
-
-  music.addEventListener("error", () => {
-    console.error(
-      "Music file not found. Check assets/birthday-instrumental.mp3"
-    );
-  });
-
-}
 
   // OPEN SELECTED PHOTOGRAPH
 
@@ -746,6 +747,7 @@ function setupBackgroundMusic(reveal) {
 
   }
 
+
   closeButton.addEventListener("click", closeLightbox);
 
 
@@ -777,7 +779,7 @@ function setupBackgroundMusic(reveal) {
 
 
 /* =========================================
-   BACKGROUND BIRTHDAY MUSIC PLAYER
+   8. BACKGROUND BIRTHDAY MUSIC PLAYER
 ========================================= */
 
 function setupBackgroundMusic(reveal) {
@@ -794,15 +796,22 @@ function setupBackgroundMusic(reveal) {
 
   musicButton.className = "music-control";
   musicButton.type = "button";
+
   musicButton.innerHTML = `
     <span class="music-icon">♫</span>
     <span class="music-label">Play Music</span>
   `;
 
-  musicButton.setAttribute("aria-label", "Play background music");
+  musicButton.setAttribute(
+    "aria-label",
+    "Play background music"
+  );
 
   reveal.appendChild(music);
   reveal.appendChild(musicButton);
+
+
+  // MUSIC STARTS ONLY WHEN THE VISITOR CLICKS
 
   musicButton.addEventListener("click", async () => {
 
@@ -849,6 +858,7 @@ function setupBackgroundMusic(reveal) {
 
   });
 
+
   music.addEventListener("error", () => {
     console.error(
       "Music file not found. Check assets/birthday-instrumental.mp3"
@@ -857,8 +867,9 @@ function setupBackgroundMusic(reveal) {
 
 }
 
+
 /* =========================================
-   7. SCROLL-TRIGGERED ANIMATIONS
+   9. SCROLL-TRIGGERED ANIMATIONS
 ========================================= */
 
 function initScrollAnimations(reveal) {
